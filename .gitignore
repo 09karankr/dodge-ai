@@ -1,0 +1,39 @@
+# Dependencies
+node_modules
+/backend/venv
+.venv
+__pycache__
+*.pyc
+.DS_Store
+
+# Environment / Secret
+.env
+/backend/.env
+backend/sap_o2c.db
+
+# Build output
+/dodge-ui/dist
+/dodge-ui/build
+
+# Logs
+*.log
+backend/backend.log
+dodge-ui/frontend.log
+backend/ingest.log
+
+# Workspace
+.gemini
+.agents
+.cursor
+task.md
+walkthrough.md
+implementation_plan.md
+database_documentation.md
+graph_audit_report.md
+semantic_search_proposal.md
+advanced_graph_analysis_ideas.md
+PROJECT_MASTER_DOCUMENTATION.md
+ULTRA_DETAILED_DOCUMENTATION.md
+documentation.md
+run_instructions.md
+/brain

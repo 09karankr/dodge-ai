@@ -1,0 +1,27 @@
+services:
+  # Backend (FastAPI)
+  - type: web
+    name: dodge-ai-backend
+    plan: free
+    env: python
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: NEO4J_URI
+        sync: false
+      - key: NEO4J_USER
+        sync: false
+      - key: NEO4J_PASSWORD
+        sync: false
+
+  # Frontend (Static Site)
+  - type: web
+    name: dodge-ai-frontend
+    env: static
+    buildCommand: cd dodge-ui && npm install && npm run build
+    staticPublishPath: dodge-ui/dist
+    envVars:
+      - key: VITE_API_BASE
+        value: https://dodge-ai-backend.onrender.com # Change this once URL is finalized
