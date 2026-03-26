@@ -54,12 +54,13 @@ def build_graph_from_ids(ids_to_check):
     try:
         with driver.session() as session:
             if not ids_to_check:
-                # Pull a very dense, fully connected cluster to prevent physics engine freeze
-                # We strictly ORDER BY o.id to ensure cloud DB returns the exact same cohesive block as local DB
+                # Guaranteed mathematical spiderweb query: Pick 1 center node and spider out 2 degrees.
+                # This explicitly forbids the creation of disconnected islands.
                 res = session.run("""
-                MATCH (o:SalesOrder) WITH o ORDER BY o.id ASC LIMIT 150
-                MATCH (o)-[r]-(m) 
-                RETURN o AS n, type(r) AS rel, m
+                MATCH (center:SalesOrder) WITH center LIMIT 1
+                MATCH (center)-[*1..2]-(m)
+                MATCH (m)-[r]-(k)
+                RETURN m AS n, type(r) AS rel, k AS m
                 """)
             else:
                 # Get sub-graph (1-hop) for all keys

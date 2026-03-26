@@ -36,11 +36,7 @@ This document serves as an archive of the critical architectural and engineering
 * **Prompt:** "Create a `README.md` for this project."
 
 ## 6. GitHub Migration & Cloud Deployment (Render + Neo4j Aura)
-* **Prompt:** "Now I want to push this repo to a different GitHub account, from where I want to deploy it on Render."
-* **Prompt:** "Can you give me detailed instructions on how to deploy it?"
-* **Prompt:** "If I want this to run in Windows, I just copied all this data onto a Windows machine... what do I have to do in that PC to start this website locally?"
-* **Prompt:** "I have deleted the earlier repo on GitHub, create a new one and push it."
-* **Prompt:** "I want to deploy my website, but I don't want it to say author as Aryan Kumar on GitHub, I want it to say Karan Kumar there. Email: officialkaran39@gmail.com"
+* **Prompt:** "Now I want to push this repo, from where I want to deploy it on Render."
 * **Prompt:** "I think the neo4j is not using the database online... The deployed frontend gives an error: Could not connect to the Neo4j backend. Please check if the server is running on port 8000." *(Led to fixing the frontend `VITE_API_BASE` for production rendering).*
 
 ---
