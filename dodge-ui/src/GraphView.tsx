@@ -1,6 +1,6 @@
 import { useCallback, useRef, useEffect, useState } from 'react';
 import ForceGraph2D from 'react-force-graph-2d';
-import { forceX, forceY, forceCollide, forceRadial } from 'd3-force';
+import { forceX, forceY, forceCollide } from 'd3-force';
 
 export default function GraphView({
   graphData,
@@ -66,7 +66,6 @@ export default function GraphView({
 
       if (clusterMode) {
         // Apply force objects from d3-force with safety accessors
-        fgRef.current.d3Force('radial', null); // Turn off universal gravity in cluster mode
         fgRef.current.d3Force('x', forceX((node: any) => {
           if (!node || !node.group) return 0;
           return centers[node.group]?.x || 0;
@@ -86,8 +85,6 @@ export default function GraphView({
         fgRef.current.d3Force('x', null);
         fgRef.current.d3Force('y', null);
         fgRef.current.d3Force('collide', forceCollide(12));
-        // Add gentle radial pull to keep islands from drifting indefinitely
-        fgRef.current.d3Force('radial', forceRadial(0, 0, 0).strength(0.015));
       }
 
       // Correct way to reheat simulation safely
