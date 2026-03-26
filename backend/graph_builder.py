@@ -55,8 +55,9 @@ def build_graph_from_ids(ids_to_check):
         with driver.session() as session:
             if not ids_to_check:
                 # Pull a very dense, fully connected cluster to prevent physics engine freeze
+                # We strictly ORDER BY o.id to ensure cloud DB returns the exact same cohesive block as local DB
                 res = session.run("""
-                MATCH (o:SalesOrder) WITH o LIMIT 200
+                MATCH (o:SalesOrder) WITH o ORDER BY o.id ASC LIMIT 150
                 MATCH (o)-[r]-(m) 
                 RETURN o AS n, type(r) AS rel, m
                 """)
