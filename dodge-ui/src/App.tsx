@@ -4,7 +4,7 @@ import ChatPanel from './ChatPanel';
 import type { ChatMessage } from './ChatPanel';
 import { Columns, Minimize2, Layers, Folder } from 'lucide-react';
 
-const API_BASE = "http://127.0.0.1:8000";
+const API_BASE = import.meta.env.VITE_API_BASE || "http://127.0.0.1:8000";
 
 const DATASETS = [
   "billing_document_cancellations",
@@ -97,7 +97,7 @@ function App() {
       })
       .catch(e => {
         console.error("Fetch error:", e);
-        setMessages(prev => [...prev, { id: 'error-init', sender: 'bot', text: 'Error: Could not connect to the Neo4j backend. Please check if the server is running on port 8000.' }]);
+        setMessages(prev => [...prev, { id: 'error-init', sender: 'bot', text: `Error: Could not connect to the Neo4j backend at ${API_BASE}.` }]);
         setIsLoading(false);
       });
   }, []);
