@@ -24,4 +24,4 @@ services:
     staticPublishPath: dodge-ui/dist
     envVars:
       - key: VITE_API_BASE
-        value: https://dodge-ai-backend.onrender.com # Change this once URL is finalized
+        value: https://dodge-ai-backend-3odw.onrender.com
