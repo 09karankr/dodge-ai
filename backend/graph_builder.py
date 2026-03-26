@@ -54,12 +54,8 @@ def build_graph_from_ids(ids_to_check):
     try:
         with driver.session() as session:
             if not ids_to_check:
-                # Return a deeply connected cluster instead of random fragments
-                res = session.run("""
-                MATCH (o:SalesOrder) WITH o LIMIT 50
-                MATCH (o)-[r]-(m) 
-                RETURN o AS n, type(r) AS rel, m
-                """)
+                # User specifically requested the FULL graph without any limits
+                res = session.run("MATCH (n)-[r]->(m) RETURN n, type(r) as rel, m")
             else:
                 # Get sub-graph (1-hop) for all keys
                 # We do undirected match but return directed paths using startNode/endNode
