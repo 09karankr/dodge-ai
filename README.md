@@ -72,4 +72,4 @@ The system currently models **19 SAP datasets**, creating a unified process line
 - [Deep-Dive Internal Manual](ULTRA_DETAILED_DOCUMENTATION.md)
 
 ---
-*Developed by Antigravity AI @ 2026*
+*Developed by Karan Kumar*
